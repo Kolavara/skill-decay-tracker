@@ -10,7 +10,7 @@
     background-color: #fdfbf7;
     color: #2d2d2d;
     font-family: 'Patrick Hand', cursive;
-    background-image: radial-gradient(#e5e0d8 1px, transparent 1px);
+    background-image: radial-gradient(rgba(45, 45, 45, 0.15) 1.2px, transparent 1.2px);
     background-size: 24px 24px;
     -webkit-font-smoothing: antialiased;
   }

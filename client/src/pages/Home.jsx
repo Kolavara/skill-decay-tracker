@@ -44,7 +44,6 @@ export default function Home() {
       <section className="relative pt-20 pb-24 px-4 overflow-hidden">
         {/* decorative elements */}
         <div className="hidden md:block absolute top-16 right-12 w-16 h-16 border-2 border-dashed border-pencil/20 rounded-full animate-bounce" style={{ animationDuration: '3s' }} />
-        <div className="hidden md:block absolute top-32 left-8 w-6 h-6 bg-accent rounded-full opacity-40" />
         <div className="hidden md:block absolute bottom-12 right-20 w-8 h-8 border-2 border-blue/20 rotate-45" />
 
         <div className="max-w-4xl mx-auto">

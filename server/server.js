@@ -25,10 +25,20 @@ app.use('/api/auth', authRoutes);
 app.use('/api/topics', topicRoutes);
 app.use('/api/stats', statsRoutes);
 
+const path = require('path');
+
 // health check
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
+
+// serve frontend static assets in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+  app.get('*', (_req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
+  });
+}
 
 // error handler
 app.use(errorHandler);
