@@ -19,7 +19,7 @@ export default function Signup() {
     setSubmitting(true);
     try {
       await signup(name, email, password);
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.error || 'signup failed');
     } finally {

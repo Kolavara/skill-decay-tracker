@@ -33,7 +33,7 @@ function ProtectedRoute({ children }) {
 function GuestRoute({ children }) {
   const { user, loading } = useAuth();
   if (loading) return null;
-  if (user) return <Navigate to="/dashboard" />;
+  if (user) return <Navigate to="/" />;
   return children;
 }
 
