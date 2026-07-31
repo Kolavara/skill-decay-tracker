@@ -148,23 +148,28 @@ export default function Navbar() {
                     </div>
 
                     {dueTopics.length > 0 ? (
-                      <div className="space-y-1 max-h-60 overflow-y-auto pr-1">
-                        {dueTopics.slice(0, 5).map((t) => (
-                          <div key={t._id} className="py-2 border-b-2 border-dashed border-pencil/20 last:border-0 flex items-center justify-between group">
-                            <div className="overflow-hidden">
-                              <p className="font-bold text-pencil text-sm sm:text-base leading-tight group-hover:text-accent transition-colors truncate pr-2">{t.name}</p>
-                              <span className="text-xs sm:text-sm text-pencil/50 truncate block">{t.subject}</span>
+                      <div className="flex flex-col">
+                        {/* Scrollable topics only */}
+                        <div className="space-y-1 max-h-48 overflow-y-auto pr-1 notif-scroll">
+                          {dueTopics.slice(0, 8).map((t) => (
+                            <div key={t._id} className="py-2 border-b-2 border-dashed border-pencil/20 last:border-0 flex items-center justify-between group">
+                              <div className="overflow-hidden">
+                                <p className="font-bold text-pencil text-sm sm:text-base leading-tight group-hover:text-accent transition-colors truncate pr-2">{t.name}</p>
+                                <span className="text-xs sm:text-sm text-pencil/50 truncate block">{t.subject}</span>
+                              </div>
+                              <span className="text-[10px] sm:text-xs bg-white text-accent font-bold px-2 py-0.5 rounded-full border-2 border-accent flex-shrink-0">
+                                due
+                              </span>
                             </div>
-                            <span className="text-[10px] sm:text-xs bg-white text-accent font-bold px-2 py-0.5 rounded-full border-2 border-accent flex-shrink-0">
-                              due
-                            </span>
-                          </div>
-                        ))}
-                        {dueTopics.length > 5 && (
-                          <p className="text-sm text-pencil/50 text-center pt-2 font-bold">
-                            + {dueTopics.length - 5} more topics
-                          </p>
-                        )}
+                          ))}
+                          {dueTopics.length > 8 && (
+                            <p className="text-sm text-pencil/50 text-center pt-2 font-bold">
+                              + {dueTopics.length - 8} more topics
+                            </p>
+                          )}
+                        </div>
+
+                        {/* Fixed review button */}
                         <Link
                           to="/dashboard"
                           onClick={() => setShowNotifications(false)}
@@ -180,16 +185,26 @@ export default function Navbar() {
                       </div>
                     )}
 
-                    <div className="mt-4 pt-3 border-t-2 border-dashed border-pencil/20 flex items-center justify-between">
-                      <span className="text-sm font-body text-pencil/70">Daily Email Digest</span>
+                    {/* Fixed email digest toggle */}
+                    <div
+                      className="mt-4 pt-3 border-t-2 border-dashed border-pencil/20 flex items-center justify-between"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <span className="text-sm font-body text-pencil/70">email digest</span>
                       <button
-                        onClick={() => updateProfile({ emailDigest: !user.emailDigest })}
-                        className={`w-10 h-5 rounded-full border-2 border-pencil relative transition-colors ${user.emailDigest ? 'bg-b8e6b8' : 'bg-pencil/20'}`}
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          updateProfile({ emailDigest: !user.emailDigest });
+                        }}
+                        className="w-11 h-6 rounded-full border-2 border-pencil relative transition-colors cursor-pointer"
                         style={{ backgroundColor: user.emailDigest ? '#b8e6b8' : '#e5e0d8' }}
+                        title={user.emailDigest ? 'Email notifications ON — click to disable' : 'Email notifications OFF — click to enable'}
                       >
                         <motion.div
-                          className="w-3 h-3 bg-pencil rounded-full absolute top-0.5"
-                          animate={{ left: user.emailDigest ? '20px' : '4px' }}
+                          className="w-4 h-4 bg-pencil rounded-full absolute top-0.5"
+                          animate={{ left: user.emailDigest ? '22px' : '3px' }}
                           transition={{ type: "spring", stiffness: 500, damping: 30 }}
                         />
                       </button>
