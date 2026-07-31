@@ -256,6 +256,9 @@ export default function Home() {
           <p className="font-body text-pencil/30 text-sm">
             a spaced repetition tool for students who want to remember what they study
           </p>
+          <p className="font-hand text-pencil/50 text-sm mt-1" style={{ transform: 'rotate(-2deg)' }}>
+            by Jd Rao
+          </p>
         </div>
       </footer>
     </div>
