@@ -77,9 +77,6 @@ export default function Home() {
             <Link to="/signup" className="btn-hand px-6 py-3 text-lg font-hand inline-flex items-center gap-2">
               start tracking <ArrowRight size={20} strokeWidth={2.5} />
             </Link>
-            <Link to="/login" className="btn-hand-secondary px-6 py-3 text-lg font-hand">
-              log in
-            </Link>
           </motion.div>
 
           {/* dashed arrow pointing to CTA */}
