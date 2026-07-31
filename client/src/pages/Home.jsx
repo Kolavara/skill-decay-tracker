@@ -53,24 +53,20 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-5xl md:text-7xl font-hand text-pencil leading-tight" style={{ transform: 'rotate(-1deg)' }}>
-              改善<br />
+              skill decay<br />
               <span className="text-accent">tracker</span>
             </h1>
           </motion.div>
 
-          <motion.div
-            className="mt-6 max-w-xl"
+          <motion.p
+            className="text-xl md:text-2xl font-body text-pencil/70 mt-6 max-w-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-xl md:text-2xl font-body text-pencil/70">
-              a spaced repetition tool for students who want to remember what they study
-            </p>
-            <p className="text-lg md:text-xl font-hand text-pencil/50 mt-2 font-bold" style={{ transform: 'rotate(-2deg)' }}>
-              by Jd Rao
-            </p>
-          </motion.div>
+            you studied it last week. do you still remember it? this app tracks what you're
+            learning and tells you exactly when you'll forget it — so you can review before it's too late.
+          </motion.p>
 
           <motion.div
             className="flex gap-4 mt-10"

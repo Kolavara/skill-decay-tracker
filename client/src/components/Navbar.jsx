@@ -76,7 +76,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3 md:gap-8">
           <Link to={user ? '/dashboard' : '/'} className="font-hand text-xl text-pencil tracking-tight inline-flex items-center gap-2">
             <Brain size={22} strokeWidth={2.5} className="flex-shrink-0" />
-            <span className="hidden sm:inline">改善</span>
+            <span className="hidden sm:inline">skill decay</span>
           </Link>
           <div className="flex items-center gap-0.5 md:gap-2">
             {links.filter(link => link.always || user).map(link => (
