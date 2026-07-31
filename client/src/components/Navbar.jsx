@@ -13,7 +13,7 @@ const links = [
 ];
 
 export default function Navbar() {
-  const { user, logout } = useAuth();
+  const { user, logout, updateProfile } = useAuth();
   const location = useLocation();
 
   const [dueTopics, setDueTopics] = useState([]);
@@ -179,6 +179,21 @@ export default function Navbar() {
                         <p className="text-xs sm:text-sm text-pencil/50 mt-1 font-body">no topics due for review right now.</p>
                       </div>
                     )}
+
+                    <div className="mt-4 pt-3 border-t-2 border-dashed border-pencil/20 flex items-center justify-between">
+                      <span className="text-sm font-body text-pencil/70">Daily Email Digest</span>
+                      <button
+                        onClick={() => updateProfile({ emailDigest: !user.emailDigest })}
+                        className={`w-10 h-5 rounded-full border-2 border-pencil relative transition-colors ${user.emailDigest ? 'bg-b8e6b8' : 'bg-pencil/20'}`}
+                        style={{ backgroundColor: user.emailDigest ? '#b8e6b8' : '#e5e0d8' }}
+                      >
+                        <motion.div
+                          className="w-3 h-3 bg-pencil rounded-full absolute top-0.5"
+                          animate={{ left: user.emailDigest ? '20px' : '4px' }}
+                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                        />
+                      </button>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

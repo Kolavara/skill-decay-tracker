@@ -36,7 +36,7 @@ router.post('/signup', [
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.status(201).json({ user: { id: user._id, name: user.name, email: user.email } });
+    res.status(201).json({ user: { id: user._id, name: user.name, email: user.email, emailDigest: user.emailDigest } });
   } catch (err) {
     next(err);
   }
@@ -71,7 +71,7 @@ router.post('/login', [
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.json({ user: { id: user._id, name: user.name, email: user.email } });
+    res.json({ user: { id: user._id, name: user.name, email: user.email, emailDigest: user.emailDigest } });
   } catch (err) {
     next(err);
   }
@@ -90,9 +90,29 @@ router.get('/me', async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.userId).select('-passwordHash');
     if (!user) return res.status(401).json({ error: 'user not found' });
-    res.json({ user: { id: user._id, name: user.name, email: user.email } });
+    res.json({ user: { id: user._id, name: user.name, email: user.email, emailDigest: user.emailDigest } });
   } catch {
     res.status(401).json({ error: 'invalid token' });
+  }
+});
+
+router.patch('/profile', async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ error: 'not authenticated' });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const updates = {};
+    if (typeof req.body.emailDigest === 'boolean') {
+      updates.emailDigest = req.body.emailDigest;
+    }
+
+    const user = await User.findByIdAndUpdate(decoded.userId, updates, { new: true }).select('-passwordHash');
+    if (!user) return res.status(404).json({ error: 'user not found' });
+    
+    res.json({ user: { id: user._id, name: user.name, email: user.email, emailDigest: user.emailDigest } });
+  } catch (err) {
+    next(err);
   }
 });
 
