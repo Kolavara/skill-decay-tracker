@@ -16,10 +16,16 @@ import TopicDetail from './pages/TopicDetail';
 import Stats from './pages/Stats';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { ThinkingOrb } from 'thinking-orbs';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
-  if (loading) return <div className="flex items-center justify-center h-screen font-hand text-pencil text-xl">loading...</div>;
+  if (loading) return (
+    <div className="flex flex-col items-center justify-center h-screen gap-4">
+      <ThinkingOrb state="solving" size={48} />
+      <p className="font-hand text-pencil/50 text-xl">loading...</p>
+    </div>
+  );
   if (!user) return <Navigate to="/login" />;
   return children;
 }
@@ -71,8 +77,9 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-paper font-hand text-pencil">
-        <p className="text-xl">loading...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-paper gap-4">
+        <ThinkingOrb state="solving" size={64} />
+        <p className="font-hand text-pencil/50 text-xl">loading...</p>
       </div>
     );
   }

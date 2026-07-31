@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, AreaChart, Area } from 'recharts';
 import { Target, Flame, Award, ListChecks, BarChart3, ShieldAlert, Sparkles, Clock, Calendar, CheckCircle2 } from 'lucide-react';
+import { ThinkingOrb } from 'thinking-orbs';
 import api from '../api';
 
 const BAR_COLORS = ['#2d5da1', '#ff4d4d', '#e2a63d', '#4caf50', '#8e44ad', '#16a085'];
@@ -20,6 +21,7 @@ export default function Stats() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center pt-24 gap-4">
+        <ThinkingOrb state="solving" size={64} />
         <p className="text-xl font-hand text-pencil/50">analyzing your memory retention...</p>
       </div>
     );

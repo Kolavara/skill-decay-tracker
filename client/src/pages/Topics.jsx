@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BorderBeam } from 'border-beam';
 import { Plus, Trash2, BookOpen } from 'lucide-react';
+import { ThinkingOrb } from 'thinking-orbs';
 import api from '../api';
 
 export default function Topics() {
@@ -203,7 +204,10 @@ export default function Topics() {
       )}
 
       {loading ? (
-        <p className="text-xl font-hand text-pencil/40 pt-8 text-center">loading...</p>
+        <div className="flex flex-col items-center justify-center pt-12 gap-4">
+          <ThinkingOrb state="searching" size={64} />
+          <p className="text-xl font-hand text-pencil/50 text-center">loading topics...</p>
+        </div>
       ) : topics.length === 0 ? (
         <p className="text-xl font-hand text-pencil/40 pt-8 text-center">no topics yet</p>
       ) : (
