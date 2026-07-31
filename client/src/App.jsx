@@ -77,7 +77,7 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-paper gap-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-transparent gap-4">
         <ThinkingOrb state="solving" size={64} />
         <p className="font-hand text-pencil/50 text-xl">loading...</p>
       </div>
@@ -90,7 +90,7 @@ export default function App() {
       ref={lenisRef}
       options={{ lerp: 0.1, duration: 1.2, syncTouch: false, smoothTouch: false, autoRaf: false }}
     >
-      <div className="min-h-screen bg-paper">
+      <div className="min-h-screen bg-transparent">
         <Navbar />
         <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <AnimatePresence mode="wait">
