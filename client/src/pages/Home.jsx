@@ -74,7 +74,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Link to="/signup" className="btn-hand px-6 py-3 text-lg font-hand inline-flex items-center gap-2">
+            <Link to="/signup" className="btn-hand px-6 py-3 text-lg font-hand inline-flex items-center gap-2 w-full sm:w-auto justify-center">
               start tracking <ArrowRight size={20} strokeWidth={2.5} />
             </Link>
           </motion.div>

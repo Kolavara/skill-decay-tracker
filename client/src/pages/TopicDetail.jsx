@@ -177,7 +177,7 @@ export default function TopicDetail() {
             ))}
           </div>
         )}
-        <div className="flex justify-between text-sm font-body text-pencil/30 mt-2 px-1">
+        <div className="flex justify-between text-[9px] sm:text-sm font-body text-pencil/40 mt-2 px-1">
           <span>forgot</span>
           <span>hard</span>
           <span>okay</span>

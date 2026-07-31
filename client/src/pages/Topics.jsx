@@ -134,7 +134,7 @@ export default function Topics() {
                   />
                 </div>
               </div>
-              <div className="flex items-end gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-end gap-4">
                 <div>
                   <label className="block text-lg font-hand text-pencil mb-1">confidence</label>
                   <div className="flex gap-1.5">
@@ -162,7 +162,7 @@ export default function Topics() {
                   disabled={submitting}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="btn-hand px-5 py-2 text-lg font-hand"
+                  className="btn-hand px-5 py-2 text-lg font-hand w-full sm:w-auto mt-4 sm:mt-0"
                 >
                   {submitting ? 'adding...' : 'add →'}
                 </motion.button>
@@ -216,33 +216,35 @@ export default function Topics() {
             <motion.div
               key={t._id}
               layout
-              className="topic-item card-hand px-5 py-4 flex items-center justify-between"
+              className="topic-item card-hand px-3 sm:px-5 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-0"
               style={{ transform: `rotate(${i % 3 === 0 ? -0.3 : i % 3 === 1 ? 0.2 : 0}deg)` }}
             >
-              <Link to={`/topics/${t._id}`} className="min-w-0 mr-4 flex-1">
-                <div className="flex items-center gap-3">
+              <Link to={`/topics/${t._id}`} className="min-w-0 mr-2 sm:mr-4 flex-1">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <BookOpen size={18} strokeWidth={2.5} className="text-pencil/40 flex-shrink-0" />
-                  <span className="text-lg font-hand text-pencil hover:text-blue transition-colors truncate">
+                  <span className="text-base sm:text-lg font-hand text-pencil hover:text-blue transition-colors truncate">
                     {t.name}
                   </span>
                   {isDue(t) && (
-                    <span className="text-sm px-2 py-0.5 bg-accent text-white font-hand border-2 border-pencil"
+                    <span className="text-xs sm:text-sm px-2 py-0.5 bg-accent text-white font-hand border-2 border-pencil flex-shrink-0"
                       style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}>
                       due!
                     </span>
                   )}
                 </div>
-                <p className="text-sm font-body text-pencil/70 mt-0.5">
-                  {t.subject} · confidence {t.confidence} · interval {t.interval}d
+                <p className="text-xs sm:text-sm font-body text-pencil/70 mt-0.5 truncate">
+                  {t.subject} · conf {t.confidence} · {t.interval}d
                 </p>
               </Link>
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => deleteTopic(t._id)}
-                className="text-sm font-hand text-pencil/30 hover:text-accent transition-colors flex-shrink-0 inline-flex items-center gap-1"
+                className="text-sm font-hand text-pencil/30 hover:text-accent transition-colors flex-shrink-0 inline-flex items-center gap-1 p-2 sm:p-0"
+                title="Remove Topic"
               >
-                <Trash2 size={14} strokeWidth={2.5} /> remove
+                <Trash2 size={16} strokeWidth={2.5} />
+                <span className="hidden sm:inline">remove</span>
               </motion.button>
             </motion.div>
           ))}

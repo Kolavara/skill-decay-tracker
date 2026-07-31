@@ -73,17 +73,17 @@ export default function Navbar() {
   return (
     <nav className="border-b-2 border-dashed border-pencil/20 bg-paper/90 backdrop-blur-sm sticky top-0 z-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-3 md:gap-8">
           <Link to={user ? '/dashboard' : '/'} className="font-hand text-xl text-pencil tracking-tight inline-flex items-center gap-2">
-            <Brain size={22} strokeWidth={2.5} />
-            skill decay
+            <Brain size={22} strokeWidth={2.5} className="flex-shrink-0" />
+            <span className="hidden sm:inline">skill decay</span>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-0.5 md:gap-2">
             {links.filter(link => link.always || user).map(link => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="relative text-lg font-body px-3 py-1"
+                className="relative text-base md:text-lg font-body px-2 md:px-3 py-1"
               >
                 {location.pathname === link.to && (
                   <motion.div
@@ -130,19 +130,20 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1, rotate: 2 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95, rotate: 0 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    className="absolute right-0 top-full mt-4 w-80 bg-[#fff9c4] border-2 border-pencil z-50 font-hand p-4"
+                    className="absolute right-0 top-full mt-4 w-[85vw] sm:w-80 bg-[#fff9c4] border-2 border-pencil z-50 font-hand p-4"
                     style={{ 
                       borderRadius: '2px 12px 2px 12px',
-                      boxShadow: '4px 4px 0px 0px rgba(45, 45, 45, 0.2)' 
+                      boxShadow: '4px 4px 0px 0px rgba(45, 45, 45, 0.2)',
+                      marginRight: '-10px'
                     }}
                   >
                     <div className="deco-tape" style={{ top: '-10px', transform: 'translateX(-50%) rotate(-3deg)', width: '80px' }} />
                     <div className="flex items-center justify-between pb-2 border-b-2 border-pencil mb-3 mt-1">
-                      <span className="font-bold text-pencil text-lg flex items-center gap-1.5">
+                      <span className="font-bold text-pencil text-base sm:text-lg flex items-center gap-1.5">
                         <Clock size={16} strokeWidth={2.5} className="text-accent" /> study reminders
                       </span>
-                      <span className="text-sm font-bold text-pencil/60">
-                        {dueTopics.length} due today
+                      <span className="text-xs sm:text-sm font-bold text-pencil/60">
+                        {dueTopics.length} due
                       </span>
                     </div>
 
@@ -150,11 +151,11 @@ export default function Navbar() {
                       <div className="space-y-1 max-h-60 overflow-y-auto pr-1">
                         {dueTopics.slice(0, 5).map((t) => (
                           <div key={t._id} className="py-2 border-b-2 border-dashed border-pencil/20 last:border-0 flex items-center justify-between group">
-                            <div>
-                              <p className="font-bold text-pencil text-base leading-tight group-hover:text-accent transition-colors">{t.name}</p>
-                              <span className="text-sm text-pencil/50">{t.subject}</span>
+                            <div className="overflow-hidden">
+                              <p className="font-bold text-pencil text-sm sm:text-base leading-tight group-hover:text-accent transition-colors truncate pr-2">{t.name}</p>
+                              <span className="text-xs sm:text-sm text-pencil/50 truncate block">{t.subject}</span>
                             </div>
-                            <span className="text-xs bg-white text-accent font-bold px-2 py-0.5 rounded-full border-2 border-accent">
+                            <span className="text-[10px] sm:text-xs bg-white text-accent font-bold px-2 py-0.5 rounded-full border-2 border-accent flex-shrink-0">
                               due
                             </span>
                           </div>
@@ -167,29 +168,31 @@ export default function Navbar() {
                         <Link
                           to="/dashboard"
                           onClick={() => setShowNotifications(false)}
-                          className="btn-hand block text-center w-full py-2 mt-4 text-base font-bold flex items-center justify-center gap-2 bg-white"
+                          className="btn-hand block text-center w-full py-2 mt-4 text-sm sm:text-base font-bold flex items-center justify-center gap-2 bg-white"
                         >
                           review now <ArrowRight size={16} strokeWidth={2.5} />
                         </Link>
                       </div>
                     ) : (
                       <div className="text-center py-6 text-pencil/60">
-                        <p className="text-lg font-bold">🎉 all caught up!</p>
-                        <p className="text-sm text-pencil/50 mt-1 font-body">no topics due for review right now.</p>
+                        <p className="text-base sm:text-lg font-bold">🎉 all caught up!</p>
+                        <p className="text-xs sm:text-sm text-pencil/50 mt-1 font-body">no topics due for review right now.</p>
                       </div>
                     )}
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              <span className="text-sm font-body text-pencil/50 hidden sm:inline">{user.name}</span>
+              <span className="text-sm font-body text-pencil/50 hidden md:inline">{user.name}</span>
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
                 onClick={logout}
                 className="text-sm font-body text-pencil/50 hover:text-accent transition-colors inline-flex items-center gap-1"
+                title="Sign Out"
               >
-                <LogOut size={14} strokeWidth={2.5} /> sign out
+                <LogOut size={16} strokeWidth={2.5} className="md:mr-1" />
+                <span className="hidden md:inline">sign out</span>
               </motion.button>
             </>
           ) : (

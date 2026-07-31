@@ -104,19 +104,19 @@ export default function Dashboard() {
                             <span className="text-sm font-hand text-pencil/40">recalculating schedule</span>
                           </div>
                         ) : (
-                          <div className="px-4 py-3 flex items-center justify-between hover:bg-postit/50 rounded transition-colors">
-                            <div className="min-w-0 mr-4">
+                          <div className="px-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 hover:bg-postit/50 rounded transition-colors">
+                            <div className="min-w-0 mr-4 w-full sm:w-auto">
                               <Link
                                 to={`/topics/${topic._id}`}
                                 className="text-lg font-hand text-pencil hover:text-blue transition-colors truncate block"
                               >
                                 {topic.name}
                               </Link>
-                              <p className="text-sm font-body text-pencil/40 mt-0.5">
+                              <p className="text-xs sm:text-sm font-body text-pencil/40 mt-0.5">
                                 interval: {topic.interval}d · ease {topic.easeFactor}
                               </p>
                             </div>
-                            <div className="flex gap-1.5 flex-shrink-0">
+                            <div className="flex gap-1.5 flex-shrink-0 self-center sm:self-auto w-full justify-between sm:w-auto sm:justify-start">
                               {[1, 2, 3, 4, 5].map(rating => (
                                 <motion.button
                                   key={rating}
