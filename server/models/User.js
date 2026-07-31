@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   emailDigest: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 }, { timestamps: { createdAt: true, updatedAt: false } });
 
