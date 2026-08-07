@@ -45,8 +45,7 @@ export default function Dashboard() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center pt-24 gap-4">
-        <ThinkingOrb state="solving" size={64} />
-        <p className="text-lg font-hand text-pencil/50">checking what's due</p>
+        <p className="text-lg font-hand text-pencil/50">checking what's due...</p>
       </div>
     );
   }

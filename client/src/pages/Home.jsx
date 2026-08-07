@@ -68,22 +68,6 @@ export default function Home() {
             learning and tells you exactly when you'll forget it — so you can review before it's too late.
           </motion.p>
 
-          <motion.div
-            className="flex gap-4 mt-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Link to="/signup" className="btn-hand px-6 py-3 text-lg font-hand inline-flex items-center gap-2 w-full sm:w-auto justify-center">
-              start tracking <ArrowRight size={20} strokeWidth={2.5} />
-            </Link>
-          </motion.div>
-
-          {/* dashed arrow pointing to CTA */}
-          <svg className="hidden md:block absolute -bottom-2 left-72 w-24 h-16 text-pencil/30" viewBox="0 0 100 60" fill="none">
-            <path d="M10 10 Q50 50 90 30" stroke="currentColor" strokeWidth="2" strokeDasharray="6 4" />
-            <path d="M80 25 L90 30 L80 38" stroke="currentColor" strokeWidth="2" fill="none" />
-          </svg>
         </div>
       </section>
 
